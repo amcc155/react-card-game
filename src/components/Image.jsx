@@ -1,5 +1,4 @@
-// access key: vE1uB0berfAcFQKwEJq1cUEplcnrLmEXe8onLGA3w1Q
-// secret key: hFgktnstR6oOQx60pZ7trth8ey2jRBc5XcbN4kSpMm0
+
 
 import React, { useState, useEffect } from "react";
 import { getImageList } from "../services/FetchImage";
