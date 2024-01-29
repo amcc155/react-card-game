@@ -5,50 +5,51 @@ import React, { useState, useEffect } from "react";
 import { getImageList } from "../services/FetchImage";
 import shuffle from "../functions/shuffle";
 
-const Image = ({score, setScore, setGameOver, data, setData, setScoreList, scoreList, setIsWon}) => {
+const Image = ({
+  score,
+  setScore,
+  setGameOver,
+  data,
+  setData,
+  setScoreList,
+  scoreList,
+  setIsWon,
+}) => {
   const [loading, setLoading] = useState(false);
-  
-  
-  const handleImageClick = (clicked, index)=>{
-    if(!clicked){
-      setScore(score += 1)
-      setScoreList(
-        [
-            ...scoreList,{num: score}
-        ]
-       
-      )
-      console.log(scoreList)
-     }else if(clicked){
-    setGameOver(true)
-    if(score === data.length){
-        setGameOver(true)
-        setIsWon(true)
-    }
-    setScore(0)
-  }
-  
 
-    const newData = (data.map((d, i) =>{
-    if(i === index){
-        return{...d, isClicked : !d.isClicked}
-    }else{
-        return d
+  const handleImageClick = (clicked, index) => {
+    if (!clicked) {
+      setScore((score += 1));
+      setScoreList([...scoreList, { num: score }]);
+      console.log(scoreList);
+    } else if (clicked) {
+      setGameOver(true);
+      if (score === data.length) {
+        setGameOver(true);
+        setIsWon(true);
+      }
+      setScore(0);
     }
-    
- }))
- setData(newData)
- shuffle(newData)
-  }
-  
+
+    const newData = data.map((d, i) => {
+      if (i === index) {
+        return { ...d, isClicked: !d.isClicked };
+      } else {
+        return d;
+      }
+    });
+    setData(newData);
+    shuffle(newData);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const imagesWithClicked = await getImageList()
+        const imagesWithClicked = await getImageList();
         setData(imagesWithClicked);
-        console.log(data)
-        setLoading(false)
+        console.log(data);
+        setLoading(false);
       } catch (error) {
         console.log("Error has occurred:", error);
       } finally {
@@ -61,14 +62,14 @@ const Image = ({score, setScore, setGameOver, data, setData, setScoreList, score
 
   return (
     <div className="images">
-       
       {data.map((image, index) => (
-        
-        <img onClick={() => handleImageClick(image.isClicked, index)} src={image.urls.regular} />
-       
+        <img
+          onClick={() => handleImageClick(image.isClicked, index)}
+          src={image.urls.regular}
+        />
       ))}
     </div>
   );
-      }
+};
 
 export default Image;
