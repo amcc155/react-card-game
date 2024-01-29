@@ -1,0 +1,17 @@
+img{
+    width:20%;
+    height:200px;
+}
+
+img:hover{
+    cursor: pointer;
+    box-shadow: 3px 3px 3px 2px lime;
+    transform: translate(10px, 10px);
+}
+.images{
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap:1.5rem;
+
+}
