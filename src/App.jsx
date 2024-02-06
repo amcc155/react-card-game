@@ -1,7 +1,7 @@
 import "./App.css";
 import ScoreBoard from "./components/ScoreBoard.";
 import Image from "./components/Image";
-import Modal from "./components/modal";
+import Modal from "./components/Modal";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 function App() {
